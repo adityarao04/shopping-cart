@@ -21,7 +21,9 @@ increaseQuantity =() =>{
     // when we dont't require previous state use this form
 //    this.setState({
 //        qty:this.state.qty + 1
-//    });
+//    },()=>{
+    //   console.log(this.state);
+//   });
 
    // set state form 2
     // when we require previous state use this form
@@ -29,6 +31,8 @@ increaseQuantity =() =>{
         return{
             qty:previousState.qty + 1
         }
+  },()=>{
+      console.log(this.state);
   })
 }
 decreaseQuantity=()=>{
@@ -38,6 +42,12 @@ decreaseQuantity=()=>{
 //     qty:this.state.qty - 1
 //    })
 
+
+const {qty} = this.state
+
+if(qty === 0){
+    return;
+}
     // set state form 2
     // when we require previous state use this form
     this.setState((previousState)=>{
