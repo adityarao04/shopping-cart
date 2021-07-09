@@ -17,11 +17,36 @@ class CartItem extends Component {
 
 // increaseQuantity function 
 increaseQuantity =() =>{
-    console.log(this.state)
+    // set state form 1
+    // when we dont't require previous state use this form
+//    this.setState({
+//        qty:this.state.qty + 1
+//    });
+
+   // set state form 2
+    // when we require previous state use this form
+    this.setState((previousState)=>{
+        return{
+            qty:previousState.qty + 1
+        }
+  })
 }
-decreaseQuantity(){
-    console.log("decrease")
-}
+decreaseQuantity=()=>{
+    // set state form 1
+     // when we dont't require previous state use this form
+//    this.setState({
+//     qty:this.state.qty - 1
+//    })
+
+    // set state form 2
+    // when we require previous state use this form
+    this.setState((previousState)=>{
+          return{
+              qty:previousState.qty - 1
+          }
+    })
+};
+
 deleteCartItem(){
     console.log("delete")
 }
