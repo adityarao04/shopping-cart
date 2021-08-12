@@ -3,18 +3,7 @@ import React, { Component } from 'react';
 
 class CartItem extends Component {
     
-    constructor(){
-        // call super() to call contructor of parent class
-        super();
-        this.state = {
-            price:999,
-            title:'iPhone',
-            qty: 1,
-            img:''
-        }
-        // this.increaseQuantity = this.increaseQuantity.bind(this);
-        // this.testing();
-    }
+    
 
 
 
@@ -85,12 +74,13 @@ deleteCartItem(){
 
 
     render() {
-        console.log("render");
-        const{price,title,qty,img} = this.state;
+        console.log("This.props",this.props);
+        // const{price,title,qty,img} = this.state;
+        const{price,title,qty,img} = this.props.product;
         return (
             <div className="cart-item">
                 <div className="left-block">
-                    <img style={styles.image}/>
+                    <img style={styles.image} src={img}/>
                 </div>
                 <div className="right-block">
                     <div styles={{fontsize:25}}>{title}</div>

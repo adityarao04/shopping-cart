@@ -1,16 +1,53 @@
 import React, { Component } from 'react'
 import CartItem from './CartItem';
 export default class Cart extends Component {
+    constructor(){
+        // call super() to call contructor of parent class
+        super();
+        this.state = {
+            products: [
+               {
+                price:99,
+                title:'Watch',
+                qty: 1,
+                id:1,
+                img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL4_FM4nq-qTxzPCwbUqn1EJP81BPucUuKqIX9GNUaLdG0OqQtMwuFNoy34FuRowuSoz-MvAxK&usqp=CAc'
+               } ,
+               {
+                price:999,
+                title:'Mobile Phone',
+                qty: 1,
+                id:2,
+                img:'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1617135051000'
+               } ,
+               {
+                price:2999,
+                title:'Laptop',
+                qty: 4,
+                id:3,
+                img:'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_IN?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613672874000'
+               } 
+            ],
+        }
+        // this.increaseQuantity = this.increaseQuantity.bind(this);
+        // this.testing();
+    }
     render() {
-
-        const arr = [1,2,3,4,5];
+        const {products} = this.state;
+   
         return (
             <div className="cart">
                 {
-             arr.map((item) => {
-                return item + 5;
-             })
-            }
+                    products.map((product)=>{
+                        return(
+                             <CartItem
+                              product={product} 
+                              key={product.id} 
+                              />
+                             )   
+                    })
+                }
+              
             </div>
         )
     }
