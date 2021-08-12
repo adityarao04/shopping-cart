@@ -13,7 +13,28 @@ class CartItem extends Component {
             img:''
         }
         // this.increaseQuantity = this.increaseQuantity.bind(this);
+        // this.testing();
     }
+
+
+
+
+    // testing(){
+    //     const promise = new Promise((resolve, reject) =>{
+    //         setTimeout(() =>{
+    //             resolve('done');
+    //         },5000);
+    //     })
+
+
+    //     promise.then(() =>{
+    //         // setState acts like a synchronous call
+    //         this.setState({qty:this.qty + 10});
+    //         this.setState({qty:this.qty + 10});
+    //         this.setState({qty:this.qty + 10});
+    //         console.log('state',this.state);
+    //     })
+    // }
 
 // increaseQuantity function 
 increaseQuantity =() =>{
@@ -64,6 +85,7 @@ deleteCartItem(){
 
 
     render() {
+        console.log("render");
         const{price,title,qty,img} = this.state;
         return (
             <div className="cart-item">
