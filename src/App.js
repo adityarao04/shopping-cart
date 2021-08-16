@@ -107,7 +107,7 @@ class App extends Component  {
        let productTotal = product.qty * product.price;
 
        total += productTotal;
-
+return "";
      })
 
      return total;
