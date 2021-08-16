@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-class CartItem extends Component {
+const CartItem = (props) => {
     
     
 
@@ -73,15 +73,15 @@ class CartItem extends Component {
 
 
 
-    render() {
-        console.log("This.props",this.props);
-        // const{price,title,qty,img} = this.state;
-        const{price,title,qty,img} = this.props.product;
+  
+        // console.log("This.props",props);
+        // const{price,title,qty,img} = state;
+        const{price,title,qty,img} = props.product;
         const{
             product,
             onIncreaseQuantity,
             onDecreaseQuantity,
-            onDeleteProduct} = this.props;
+            onDeleteProduct} = props;
 
 
 
@@ -120,7 +120,7 @@ class CartItem extends Component {
                 </div>
             </div>
         );
-    }
+    
 }
 
 
