@@ -49,11 +49,13 @@ export default class Cart extends Component {
 
 
    handleDecreaseQuantity= (product)=>{
+       
        console.log("Hey decrese the qty",product);
 
        const {products} = this.state;
 
        const index = products.indexOf(product);
+       if(products[index].qty === 0){return;}
 
        products[index].qty -= 1;
 
@@ -64,6 +66,16 @@ export default class Cart extends Component {
        })
    }
 
+
+   handleDeleteProduct = (id)=>{
+       const {products} = this.state;
+
+       const items = products.filter((item)=>item.id !== id);
+
+       this.setState({
+           products: items
+       })
+   }
 
 
 
@@ -82,6 +94,7 @@ export default class Cart extends Component {
                               key={product.id} 
                               onIncreaseQuantity={this.handleIncreaseQuantity}
                               onDecreaseQuantity={this.handleDecreaseQuantity}
+                              onDeleteProduct={this.handleDeleteProduct}
                               />
                              )   
                     })
