@@ -91,9 +91,9 @@ const CartItem = (props) => {
                     <img style={styles.image} src={img}/>
                 </div>
                 <div className="right-block">
-                    <div styles={{fontsize:25}}>{title}</div>
-                    <div styles={{color:"#777"}}>Rs {price}</div>
-                    <div styles={{color:"#777"}}>Qty: {qty}</div>
+                    <div styles={{fontSize:25}} className="product-title">{title}</div>
+                    <div styles={{color:"#777"}} className="sub-info">₹ {price}</div>
+                    <div styles={{color:"#777"}} className="sub-info">Qty: {qty}</div>
                     <div className="cart-item-actions">
                         {/*buttons  */}
                     <img
