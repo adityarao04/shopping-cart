@@ -3,6 +3,10 @@ import './App.css';
 // import CartItem from './CartItem';
 import Cart from './Cart';
 import Navbar from './Navbar';
+import firebase from "firebase/app";
+import { firestore } from 'firebase'
+
+
 
 class App extends Component  {
 
@@ -13,32 +17,38 @@ class App extends Component  {
         // call super() to call contructor of parent class
         super();
         this.state = {
-            products: [
-               {
-                price:99,
-                title:'Watch',
-                qty: 1,
-                id:1,
-                img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL4_FM4nq-qTxzPCwbUqn1EJP81BPucUuKqIX9GNUaLdG0OqQtMwuFNoy34FuRowuSoz-MvAxK&usqp=CAc'
-               } ,
-               {
-                price:999,
-                title:'Mobile Phone',
-                qty: 1,
-                id:2,
-                img:'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1617135051000'
-               } ,
-               {
-                price:2999,
-                title:'Laptop',
-                qty: 4,
-                id:3,
-                img:'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_IN?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613672874000'
-               } 
-            ],
+            products: [],
+            loading: true
         }
         // this.increaseQuantity = this.increaseQuantity.bind(this);
         // this.testing();
+    }
+
+
+    componentDidMount(){
+      firebase
+      .firestore()
+      .collection('products')
+      .get()
+      .then((snapshot) =>{
+        console.log(snapshot);
+
+        snapshot.docs.map((doc) =>{
+          console.log(doc.data());
+        });
+
+        const products = snapshot.docs.map((doc) =>{
+          const data = doc.data();
+          data['id'] = doc.id;
+           return data;
+        })
+
+
+        this.setState({
+          products: products,
+          loading: false
+        })
+      })
     }
 
    handleIncreaseQuantity= (product)=>{
@@ -115,7 +125,7 @@ return "";
 
 
    render(){
-const {products} = this.state;
+const {products,loading} = this.state;
      return (
        <div className="App">
          <Navbar
@@ -129,6 +139,7 @@ const {products} = this.state;
           onDecreaseQuantity={this.handleDecreaseQuantity}
           onDeleteProduct={this.handleDeleteProduct}
         />
+        {loading && <h1>Loading Products....</h1>}
         <div className="total-price">
           <h4>
           TOTAL PRICE
